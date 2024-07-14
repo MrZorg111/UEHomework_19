@@ -1,60 +1,44 @@
 ﻿#include <iostream>
 #include <vector>
 
-/*
-Создайте класс Animal с публичным методом Voice(), который выводит в консоль строку с текстом.                                  ГОТОВО
-
-Наследуйте от Animal минимум три класса (к примеру Dog, Cat и т. д.) и в них перегрузите метод Voice() таким образом, 
-чтобы для примера в классе Dog метод Voice() выводилось Woof! в консоль.                                                        ГОТОВО!
-
-В функции main создайте массив указателей типа Animal и заполните этот массив объектами созданных классов.
-
-Затем пройдитесь циклом по массиву, вызывая на каждом элементе массива метод Voice().
-Протестируйте его работу. Должны выводиться сообщения из ваших классов-наследников Animal.
-*/
-
 class Animal {
 public:
-    void voice() {
-        std::cout << "NONONO" << std::endl;
+    virtual void voice() {
+        std::cout << " " << std::endl;
     }
 };
 
-class Dog: public Animal {
+class Dog : public Animal {
 public:
-    void voice() {
+    void voice() override {
         std::cout << "Dog: -Gaf!" << std::endl;
     }
 };
 
-class Cat: public Animal {
+class Cat : public Animal {
 public:
-    void voice() {
+    void voice() override {
         std::cout << "Cat: -Meow" << std::endl;
     }
 };
 
-class Fish: public Animal {
+class Fish : public Animal {
 public:
-    void voice() {
+    void voice() override {
         std::cout << "Fish: -..." << std::endl;
     }
 };
 int main(){
+    const int SIZE = 3;
+    Animal* animals[SIZE];
     
-    Dog dog;
-    Cat cat;
-    Fish fish;
+    animals[0] = new Dog();
+    animals[1] = new Cat();
+    animals[2] = new Fish();
 
-    Animal* animals = new Animal[3];
-
-    animals[0] = dog;
-    animals[1] = cat;
-    animals[2] = fish;
-
-    for (int i = 0; i < 3; i++) {
-       animals[i].voice();
+    for (int i = 0; i < SIZE; i++) {
+        animals[i]->voice();
     }
-   
+    
     return 0;
 }
